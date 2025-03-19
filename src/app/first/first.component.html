@@ -1,2 +1,23 @@
 <!--<img [src]="src" alt="тут должна быть картинка">-->
-asdasd
+<div>
+  <input type="text" [(ngModel)]="searchQuery" placeholder="Введите запрос" />
+  <button (click)="onSearch()">Поиск</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>№</th>
+      <th>Название</th>
+      <th>Адрес</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data$ | async; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.Cells.FullName }}</td>
+      <!-- <ng-content *ngFor="let team of item.ObjectAddress"></ng-content>
+      <td>{{ team.Address }}</td> -->
+    </tr>
+  </tbody>
+</table>
