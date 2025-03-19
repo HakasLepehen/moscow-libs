@@ -13,11 +13,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of data$ | async; let i = index">
+    <tr *ngFor="let item of data$ | async; let i = index" (click)="onRowClick(item)">
       <td>{{ i + 1 }}</td>
       <td>{{ item.Cells.FullName }}</td>
-      <!-- <ng-content *ngFor="let team of item.ObjectAddress"></ng-content>
-      <td>{{ team.Address }}</td> -->
     </tr>
   </tbody>
 </table>
+
+<!-- Блок для отображения выбранного элемента -->
+<div *ngIf="selectedItem" class="selected-item">
+  <h2>Выбранная библиотека</h2>
+  <p><strong>Название:</strong> {{ selectedItem.Cells.FullName }}</p>
+  <!-- Добавьте другие поля, если необходимо -->
+</div>

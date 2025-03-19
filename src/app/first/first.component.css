@@ -10,6 +10,14 @@ table {
   font-family: Arial, sans-serif;
 }
 
+/* Стили для таблицы */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
 th, td {
   border: 1px solid #ddd;
   padding: 8px;
@@ -21,10 +29,19 @@ th {
   font-weight: bold;
 }
 
-tr:nth-child(even) {
+tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer; /* Изменяем курсор при наведении */
+}
+
+/* Стили для выбранного элемента */
+.selected-item {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
   background-color: #f9f9f9;
 }
 
-tr:hover {
-  background-color: #f1f1f1;
+.selected-item h2 {
+  margin-top: 0;
 }
