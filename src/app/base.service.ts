@@ -11,7 +11,7 @@ export class BaseService {
 
   constructor(protected http: HttpClient) { }
 
-  protected getData<T>(url: string, qp?: HttpParams): Observable<T> {
-    return this.http.get<T>(this.rootURL + url, {params: qp});
+  protected getData<T>(url: string, qp?: HttpParams ): Observable<T> {
+    return this.http.get<T>(this.rootURL + url, { params: qp });
   }
 }

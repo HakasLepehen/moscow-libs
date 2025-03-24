@@ -4,10 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LibraryService } from './library.service';
 import { Subject } from 'rxjs';
+import { HighlightPipe } from '../pipes/highlight.pipe';
 
 @Component({
   selector: 'app-first',
-  imports: [CommonModule, FormsModule, AsyncPipe],
+  imports: [CommonModule, FormsModule, AsyncPipe, HighlightPipe],
   templateUrl: './first.component.html',
   styleUrl: './first.component.css',
   standalone: true,
@@ -23,7 +24,7 @@ export class FirstComponent {
   }
 
   onSearch() {
-    this.libraryService.getLibraries()
+    this.libraryService.getLibraries(this.searchQuery);
   }
 
   onRowClick(item: any) {

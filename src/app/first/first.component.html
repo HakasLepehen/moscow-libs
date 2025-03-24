@@ -1,28 +1,31 @@
-<!--<img [src]="src" alt="тут должна быть картинка">-->
-<div>
-  <input type="text" [(ngModel)]="searchQuery" placeholder="Введите запрос" />
-  <button (click)="onSearch()">Поиск</button>
-</div>
+<main>
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Введите запрос" />
+    <button (click)="onSearch()">Поиск</button>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>№</th>
-      <th>Название</th>
-      <th>Адрес</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of data$ | async; let i = index" (click)="onRowClick(item)">
-      <td>{{ i + 1 }}</td>
-      <td>{{ item.Cells.FullName }}</td>
-    </tr>
-  </tbody>
-</table>
+  <!-- <table>
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Название</th>
+        <th>Адрес</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data$ | async; let i = index" (click)="onRowClick(item)">
+        <td>{{ i + 1 }}</td>
+        <td [innerHTML]="item.FullName | highlight: searchQuery"></td>
+        <td>{{ item.Address }}</td>
+      </tr>
+    </tbody>
+  </table> -->
+</main>
 
-<!-- Блок для отображения выбранного элемента -->
-<div *ngIf="selectedItem" class="selected-item">
-  <h2>Выбранная библиотека</h2>
-  <p><strong>Название:</strong> {{ selectedItem.Cells.FullName }}</p>
-  <!-- Добавьте другие поля, если необходимо -->
-</div>
+<aside>
+  <div *ngIf="selectedItem" class="selected-item">
+    <h2>Выбранная библиотека</h2>
+    <p><strong>Название:</strong> {{ selectedItem.FullName }}</p>
+    <p><strong>Адрес:</strong> {{ selectedItem.Address }}</p>
+  </div>
+</aside>
