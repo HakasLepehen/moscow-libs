@@ -22,19 +22,26 @@ import { HighlightPipe } from '../pipes/highlight.pipe';
 export class FirstComponent {
   public readonly src = 'https://img.freepik.com/free-photo/beautiful-milky-way-night-sky_53876-139825.jpg?t=st=1742366760~exp=1742370360~hmac=33502b9c0c41d40f9e174e47d9e30b8e956a6cee78bfbfa401e33dbefc89a6d6&w=1380';
   searchHighlightString: string = '';
-  data$!: any;
-  selectedItem: any = null;
+  data$!: Subject<any[]>;
+  captions$!: Subject<any[]>;
+  captions!: any[];
+  selectedLibrary: any = null;
 
   constructor(private libraryService: LibraryService) {
     this.data$ = libraryService.datasets$;
+    libraryService.captions$.subscribe(val => { if (val) this.captions$.next(val)});
   }
 
   onSubmit(form: NgForm) {
+    // Initializing value for highlighting search value after submit event
     this.searchHighlightString = form.value.searchString;
+    // we need to deselect library in aside block
+    this.selectedLibrary = null;
+    // sending input value to server
     this.libraryService.getLibraries(form.value.searchString);
   }
 
   onRowClick(item: any) {
-    this.selectedItem = item; // Сохраняем выбранный элемент
+    this.selectedLibrary = item;
   }
 }

@@ -17,6 +17,7 @@ export class LibraryService extends BaseService {
   private readonly datasetsWithRows = `datasets/526/rows`;
   public datasets$: Subject<any> = new Subject();
   public rows$: Subject<any> = new Subject();
+  public captions$: Subject<any> = new Subject();
 
   constructor() {
     const http: HttpClient = inject(HttpClient);
@@ -35,7 +36,7 @@ export class LibraryService extends BaseService {
       .pipe(
         take(1),
         tap(([val, category]) => {
-          const obj = (<any>category).Columns.map((el: any) => {
+          const captions = (<any>category).Columns.map((el: any) => {
             return {
               Name: el.Name,
               Caption: el.Caption
@@ -52,6 +53,7 @@ export class LibraryService extends BaseService {
               Details: {}
             }
           })
+          this.captions$.next(captions)
           this.datasets$.next(map)
           return of()
         })

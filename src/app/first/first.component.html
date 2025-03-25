@@ -24,9 +24,12 @@
 </main>
 
 <aside>
-  <div *ngIf="selectedItem" class="selected-item">
+  <div *ngIf="selectedLibrary" class="selected-item">
     <h2>Выбранная библиотека</h2>
-    <p><strong>Название:</strong> {{ selectedItem.FullName }}</p>
-    <p><strong>Адрес:</strong> {{ selectedItem.Address }}</p>
+    <div *ngFor="let caption of captions$ | async; let s = index">
+      <span>{{s}}</span>
+    </div>
+    <!-- <p><strong>Название:</strong> {{ selectedItem.FullName }}</p>
+    <p><strong>Адрес:</strong> {{ selectedItem.Address }}</p> -->
   </div>
 </aside>
