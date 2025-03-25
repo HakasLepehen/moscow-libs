@@ -1,8 +1,4 @@
 <main>
-  <!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate class="search-container">
-    <input name="first" #first="ngModel"/>
-    <button>Поиск</button>
-  </form> -->
   <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="search-container">
     <input name="searchString" ngModel />
     <button>Поиск</button>
