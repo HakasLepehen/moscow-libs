@@ -1,10 +1,15 @@
 <main>
-  <div class="search-container">
-    <input type="text" [(ngModel)]="searchQuery" placeholder="Введите запрос" />
-    <button (click)="onSearch()">Поиск</button>
-  </div>
+  <!-- <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate class="search-container">
+    <input name="first" #first="ngModel"/>
+    <button>Поиск</button>
+  </form> -->
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="search-container">
+    <input name="searchString" ngModel />
+    <button>Поиск</button>
+  </form>
 
-  <!-- <table>
+
+  <table>
     <thead>
       <tr>
         <th>№</th>
@@ -15,11 +20,11 @@
     <tbody>
       <tr *ngFor="let item of data$ | async; let i = index" (click)="onRowClick(item)">
         <td>{{ i + 1 }}</td>
-        <td [innerHTML]="item.FullName | highlight: searchQuery"></td>
+        <td [innerHTML]="item.FullName | highlight: searchHighlightString"></td>
         <td>{{ item.Address }}</td>
       </tr>
     </tbody>
-  </table> -->
+  </table>
 </main>
 
 <aside>
