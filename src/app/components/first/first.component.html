@@ -1,0 +1,40 @@
+<main>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="search-container">
+    <input name="searchString" ngModel />
+    <button>Поиск</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>Название</th>
+        <th>Адрес</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data$ | async; let i = index" (click)="onRowClick(item)">
+        <td>{{ i + 1 }}</td>
+        <td [innerHTML]="item.FullName | highlight: searchHighlightString"></td>
+        <td>{{ item.Address }}</td>
+      </tr>
+    </tbody>
+  </table>
+  @if ((isLoading$ | async)) {
+    <app-spinner />
+  }
+</main>
+
+<aside>
+  <h2>Выбранная библиотека</h2>
+  @if (selectedLibrary) {
+    <div class="selected-item">
+      <app-second [library]="selectedLibrary" [captions]="captions" />
+    </div>
+  }
+  <!-- <div *ngFor="let caption of captions$ | async; let s = index">
+    <div *ngIf="selectedLibrary" class="selected-item">
+      <span>{{caption.Caption}}</span>: <p>{{selectedLibrary[caption.Name]}}</p>
+    </div>
+  </div> -->
+</aside>
